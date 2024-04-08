@@ -1,26 +1,32 @@
 import React from "react";
 import Image from "next/image";
 import ReviewCard from "./ReviewCard";
+import CommentForm from "./CommentForm";
 
 const AllReviews = ({ reviews }) => {
+  let isFirstReview = true;
+
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-3 gap-10 pt-3 p-6">
       <div className="col-span-3 md:col-span-2">
         {reviews &&
-          reviews.map((review) => (
-            <ReviewCard
-              key={review._id}
-              createdAt={review.createdAt}
-              userName={review.userName}
-              role={review.role}
-              datePosted={review.createdAt}
-              review={review.review}
-              likes={review.likes}
-              dislikes={review.dislikes}
-              comments={review.comments}
-              rating={review.rating}
-              postAsAnonymous={review.postAsAnonymous}
-            />
+          reviews.map((review, index) => (
+            <React.Fragment key={review._id}>
+              <ReviewCard
+                createdAt={review.createdAt}
+                userName={review.userName}
+                role={review.role}
+                datePosted={review.createdAt}
+                review={review.review}
+                likes={review.likes}
+                dislikes={review.dislikes}
+                comments={review.comments}
+                rating={review.rating}
+                postAsAnonymous={review.postAsAnonymous}
+              />
+              {isFirstReview && <CommentForm key="comment-form" />}
+              {isFirstReview && (isFirstReview = false)}
+            </React.Fragment>
           ))}
       </div>
 

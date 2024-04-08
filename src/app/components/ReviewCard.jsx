@@ -48,6 +48,7 @@ const ReviewCard = ({
   }
 
   return (
+    <div>
     <div className="border-b border-[#D9D9D9] py-6">
       <div className="flex justify-between">
         <div className="flex items-center gap-3">
@@ -125,6 +126,7 @@ const ReviewCard = ({
           {comments}
         </p>
       </div>
+    </div>
     </div>
   );
 };

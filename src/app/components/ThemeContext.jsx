@@ -8,14 +8,14 @@ export const ThemeContext = React.createContext({
 });
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = React.useState(() => {
-    const storedTheme = localStorage.getItem("theme");
-    return storedTheme ? storedTheme : "light";
-  });
+  const [theme, setTheme] = React.useState("light");
 
   useEffect(() => {
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setTheme(storedTheme);
+    }
+  }, []);
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
